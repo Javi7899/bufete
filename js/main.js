@@ -7,12 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
     menuToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         menuToggle.classList.toggle('active');
+        document.body.classList.toggle('no-scroll');
     });
 
     navItems.forEach(item => {
         item.addEventListener('click', () => {
             navLinks.classList.remove('active');
             menuToggle.classList.remove('active');
+            document.body.classList.remove('no-scroll');
         });
     });
 
@@ -30,12 +32,24 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             // Excluir el botón de correo que no es un anchor interno
-            if (!this.classList.contains('btn-large')) {
+            if (!this.classList.contains('btn-large') && !this.classList.contains('btn')) {
                 e.preventDefault();
                 
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Actualizar URL sin recargar la página
+                    if (history.pushState) {
+                        history.pushState(null, null, targetId);
+                    } else {
+                        location.hash = targetId;
+                    }
+                }
             }
         });
     });
@@ -89,5 +103,20 @@ document.addEventListener('DOMContentLoaded', function() {
         tabLinks[0].classList.add('active');
         const initialTab = tabLinks[0].getAttribute('data-tab');
         document.getElementById(initialTab).classList.add('active');
+    }
+
+    // Prevent scroll when mobile menu is open
+    document.body.classList.remove('no-scroll');
+});
+
+// Handle page load with hash in URL
+window.addEventListener('load', function() {
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target) {
+            setTimeout(() => {
+                target.scrollIntoView();
+            }, 100);
+        }
     }
 });
