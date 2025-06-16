@@ -589,6 +589,54 @@ footer {
     .service-card {
         height: auto;
     }
+    .service-details {
+    margin-bottom: 20px;
+}
+
+.service-details h4 {
+    font-size: 1.1rem;
+    margin: 15px 0 10px;
+    color: var(--accent-color);
+}
+
+.service-details ul {
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+
+.service-details ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.service-details ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.service-details ul li strong {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+/* Ajustes para las tarjetas de servicios */
+.service-content {
+    padding-bottom: 80px; /* Más espacio para el botón */
+}
+
+/* Responsive para las listas */
+@media (max-width: 768px) {
+    .service-details ul li {
+        font-size: 0.85rem;
+    }
+}
     
     .contact-info {
         padding: 20px;
