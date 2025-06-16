@@ -106,7 +106,7 @@ nav {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../assets/images/hero-bg.jpg') no-repeat center center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('assets/images/hero-bg.jpg') no-repeat center center/cover;
     display: flex;
     align-items: center;
     text-align: center;
@@ -167,6 +167,11 @@ nav {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
+.btn-large {
+    padding: 15px 40px;
+    font-size: 18px;
+}
+
 /* Sections */
 section {
     padding: var(--section-padding);
@@ -203,59 +208,109 @@ section {
     overflow: hidden;
     transition: all 0.3s ease;
     position: relative;
-    height: 400px; /* Opcional: puedes cambiarlo por "auto" si prefieres */
+    height: 400px;
+}
+
+.service-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
 }
 
 .service-content {
     padding: 25px;
-    position: relative; /* Añadido para el botón "Consultar" */
-    padding-bottom: 60px; /* Espacio extra para el botón */
+    position: relative;
+    padding-bottom: 60px;
 }
 
-/* Nuevos estilos para el botón "Consultar" */
+.service-content h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.service-content p {
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
 .service-content .btn {
     position: absolute;
     bottom: 25px;
     left: 25px;
     right: 25px;
-    width: calc(100% - 50px); /* Ajuste de ancho */
-    text-align: center; /* Para centrar el texto */
+    width: calc(100% - 50px);
+    text-align: center;
 }
 
-/* Contact */
-.contact-form {
+/* About Section */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-img {
+    height: 500px;
+    border-radius: 15px;
+    background-size: cover;
+    background-position: center;
+}
+
+.about-text h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    line-height: 1.3;
+}
+
+.about-text p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+}
+
+/* Contact Section */
+.contact-simple {
     max-width: 600px;
     margin: 0 auto;
+    text-align: center;
+}
+
+.contact-simple p {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.contact-info {
+    margin-top: 50px;
     background-color: var(--card-bg);
-    padding: 40px;
+    padding: 30px;
     border-radius: 15px;
+    text-align: left;
 }
 
-.form-group {
+.contact-info h3 {
     margin-bottom: 20px;
+    font-size: 1.5rem;
 }
 
-.form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 500;
+.contact-info p {
+    margin-bottom: 15px;
+    color: var(--text-secondary);
 }
 
-.form-group input,
-.form-group textarea,
-.form-group select {
-    width: 100%;
-    padding: 12px 15px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    color: var(--text-color);
-    font-size: 16px;
+.contact-info a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: opacity 0.3s ease;
 }
 
-.form-group textarea {
-    height: 150px;
-    resize: vertical;
+.contact-info a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
 }
 
 /* Footer */
@@ -437,5 +492,9 @@ footer {
 
     .service-card {
         height: auto;
+    }
+    
+    .contact-info {
+        padding: 20px;
     }
 }
