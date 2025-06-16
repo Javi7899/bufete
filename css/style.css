@@ -203,60 +203,23 @@ section {
     overflow: hidden;
     transition: all 0.3s ease;
     position: relative;
-    height: 400px;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.service-img {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
+    height: 400px; /* Opcional: puedes cambiarlo por "auto" si prefieres */
 }
 
 .service-content {
     padding: 25px;
+    position: relative; /* Añadido para el botón "Consultar" */
+    padding-bottom: 60px; /* Espacio extra para el botón */
 }
 
-.service-content h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.service-content p {
-    color: var(--text-secondary);
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-/* About */
-.about-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 50px;
-    align-items: center;
-}
-
-.about-img {
-    border-radius: 15px;
-    overflow: hidden;
-    height: 500px;
-    background-size: cover;
-    background-position: center;
-}
-
-.about-text h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-
-.about-text p {
-    color: var(--text-secondary);
-    margin-bottom: 15px;
-    line-height: 1.6;
+/* Nuevos estilos para el botón "Consultar" */
+.service-content .btn {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    right: 25px;
+    width: calc(100% - 50px); /* Ajuste de ancho */
+    text-align: center; /* Para centrar el texto */
 }
 
 /* Contact */
