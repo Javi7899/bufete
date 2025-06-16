@@ -731,3 +731,59 @@ footer {
         padding: 20px;
     }
 }
+/* Añade esto al archivo CSS */
+
+/* Imágenes específicas para asesoría */
+.service-img[style*="asesoria-fiscal.jpg"] {
+    background-image: url('assets/images/asesoria-fiscal.jpg') !important;
+}
+
+.service-img[style*="asesoria-laboral.jpg"] {
+    background-image: url('assets/images/asesoria-laboral.jpg') !important;
+}
+
+.service-img[style*="asesoria-contable.jpg"] {
+    background-image: url('assets/images/asesoria-contable.jpg') !important;
+}
+
+.service-img[style*="asesoria-legal.jpg"] {
+    background-image: url('assets/images/asesoria-legal.jpg') !important;
+}
+
+/* Listas anidadas para mejor organización */
+.service-details .nested-list {
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.service-details .nested-list li {
+    font-size: 0.85rem;
+    padding-left: 15px;
+}
+
+.service-details .nested-list li::before {
+    content: '-';
+    left: 0;
+}
+
+/* Efectos hover para mejor interactividad */
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.service-card {
+    transition: all 0.3s ease;
+}
+
+/* Responsive para listas complejas */
+@media (max-width: 768px) {
+    .service-details .nested-list li {
+        font-size: 0.8rem;
+    }
+    
+    .service-content {
+        padding: 20px;
+        padding-bottom: 80px;
+    }
+}
