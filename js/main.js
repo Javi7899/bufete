@@ -29,11 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Smooth Scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
+            // Excluir el botón de correo que no es un anchor interno
+            if (!this.classList.contains('btn-large')) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            }
         });
     });
 
@@ -55,18 +58,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form Submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Here you would typically send the form data to a server
-            // For demonstration, we'll just show an alert
-            alert('Gracias por su mensaje. Nos pondremos en contacto con usted pronto.');
-            contactForm.reset();
-        });
-    }
+    // Set current year in footer
+    const currentYear = new Date().getFullYear();
+    document.getElementById('current-year').textContent = currentYear;
 
     // Set active nav link based on scroll position
     const sections = document.querySelectorAll('section');
@@ -89,4 +83,11 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // Initialize - Set first tab as active if exists
+    if (tabLinks.length > 0) {
+        tabLinks[0].classList.add('active');
+        const initialTab = tabLinks[0].getAttribute('data-tab');
+        document.getElementById(initialTab).classList.add('active');
+    }
 });
