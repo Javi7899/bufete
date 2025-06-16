@@ -101,6 +101,32 @@ nav {
 .menu-toggle {
     display: none;
     cursor: pointer;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    z-index: 1002;
+}
+
+.menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--text-color);
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
 }
 
 /* Hero Section */
@@ -111,6 +137,7 @@ nav {
     align-items: center;
     text-align: center;
     position: relative;
+    padding-top: 80px;
 }
 
 .hero-content {
@@ -172,6 +199,11 @@ nav {
     font-size: 18px;
 }
 
+.btn-group {
+    display: flex;
+    justify-content: center;
+}
+
 /* Sections */
 section {
     padding: var(--section-padding);
@@ -180,7 +212,7 @@ section {
 
 .section-title {
     text-align: center;
-    margin-bottom: 60px;
+    margin-bottom: 20px;
     font-size: 2.5rem;
     font-weight: 700;
 }
@@ -208,19 +240,27 @@ section {
     overflow: hidden;
     transition: all 0.3s ease;
     position: relative;
-    height: 400px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-img {
     height: 200px;
     background-size: cover;
     background-position: center;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-img {
+    transform: scale(1.03);
 }
 
 .service-content {
     padding: 25px;
-    position: relative;
-    padding-bottom: 60px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .service-content h3 {
@@ -228,19 +268,115 @@ section {
     font-size: 1.5rem;
 }
 
-.service-content p {
-    color: var(--text-secondary);
+.service-details {
     margin-bottom: 20px;
-    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.service-details h4 {
+    font-size: 1.1rem;
+    margin: 15px 0 10px;
+    color: var(--accent-color);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 5px;
+}
+
+.service-details ul {
+    list-style-type: none;
+    margin-bottom: 15px;
+}
+
+.service-details ul li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.service-details ul li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.service-details ul li strong {
+    color: var(--text-color);
+    font-weight: 500;
+}
+
+.service-details .nested-list {
+    margin-left: 20px;
+    margin-top: 5px;
+}
+
+.service-details .nested-list li {
+    font-size: 0.85rem;
+    padding-left: 15px;
+}
+
+.service-details .nested-list li::before {
+    content: '-';
+    left: 0;
 }
 
 .service-content .btn {
+    align-self: flex-start;
+    margin-top: auto;
+    width: auto;
+}
+
+/* Tab Navigation */
+.tab-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    flex-wrap: wrap;
+}
+
+.tab-link {
+    padding: 15px 30px;
+    cursor: pointer;
+    font-weight: 500;
+    color: var(--text-secondary);
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.tab-link:hover {
+    color: var(--text-color);
+}
+
+.tab-link.active {
+    color: var(--accent-color);
+}
+
+.tab-link.active::after {
+    content: '';
     position: absolute;
-    bottom: 25px;
-    left: 25px;
-    right: 25px;
-    width: calc(100% - 50px);
-    text-align: center;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--accent-color);
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 /* About Section */
@@ -259,9 +395,9 @@ section {
 }
 
 .about-text h3 {
-    font-size: 2rem;
+    color: var(--accent-color);
     margin-bottom: 20px;
-    line-height: 1.3;
+    font-size: 1.8rem;
 }
 
 .about-text p {
@@ -270,48 +406,53 @@ section {
     color: var(--text-secondary);
 }
 
-/* Contact Section */
-.contact-simple {
-    max-width: 600px;
-    margin: 0 auto;
-    text-align: center;
+.about-highlights {
+    margin: 25px 0;
 }
 
-.contact-simple p {
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-}
-
-.contact-info {
-    margin-top: 50px;
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 15px;
-    text-align: left;
-}
-
-.contact-info h3 {
+.highlight-item {
     margin-bottom: 20px;
-    font-size: 1.5rem;
 }
 
-.contact-info p {
-    margin-bottom: 15px;
+.highlight-item h4 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    position: relative;
+    padding-left: 25px;
+}
+
+.highlight-item h4::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 15px;
+    height: 15px;
+    background-color: var(--accent-color);
+    border-radius: 3px;
+}
+
+.about-list {
+    list-style-type: none;
+    margin-top: 10px;
+}
+
+.about-list li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 8px;
     color: var(--text-secondary);
 }
 
-.contact-info a {
+.about-list li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
     color: var(--accent-color);
-    text-decoration: none;
-    transition: opacity 0.3s ease;
 }
 
-.contact-info a:hover {
-    opacity: 0.8;
-    text-decoration: underline;
-}
 /* Contact Section */
 .contact-container {
     display: grid;
@@ -382,33 +523,6 @@ section {
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .contact-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .contact-map {
-        height: 400px;
-        order: -1;
-    }
-}
-
-@media (max-width: 576px) {
-    .contact-info {
-        padding: 25px;
-    }
-    
-    .contact-details strong {
-        width: 100px;
-    }
-    
-    .contact-map {
-        height: 300px;
-    }
-}
-
-
 /* Footer */
 footer {
     background-color: var(--secondary-color);
@@ -454,73 +568,44 @@ footer {
     font-size: 14px;
 }
 
-/* Tab Navigation */
-.tab-nav {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .hero h1 {
+        font-size: 3rem;
+    }
 }
 
-.tab-link {
-    padding: 15px 30px;
-    cursor: pointer;
-    font-weight: 500;
-    color: var(--text-secondary);
-    position: relative;
-    transition: all 0.3s ease;
-}
-
-.tab-link:hover {
-    color: var(--text-color);
-}
-
-.tab-link.active {
-    color: var(--accent-color);
-}
-
-.tab-link.active::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background-color: var(--accent-color);
-}
-
-.tab-content {
-    display: none;
-}
-
-.tab-content.active {
-    display: block;
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Responsive */
 @media (max-width: 992px) {
     .hero h1 {
-        font-size: 2.8rem;
+        font-size: 2.5rem;
     }
-
+    
     .about-content {
         grid-template-columns: 1fr;
     }
-
+    
     .about-img {
         height: 400px;
+        order: -1;
+    }
+    
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-map {
+        height: 400px;
+        order: -1;
+    }
+    
+    .section-title {
+        font-size: 2.2rem;
     }
 }
 
 @media (max-width: 768px) {
     .menu-toggle {
-        display: block;
+        display: flex;
     }
 
     .nav-links {
@@ -546,302 +631,53 @@ footer {
         margin: 15px 0;
     }
 
+    .hero {
+        padding-top: 70px;
+    }
+    
     .hero h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
     }
 
     .hero p {
         font-size: 1rem;
     }
-
-    .btn {
-        padding: 10px 20px;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .tab-nav {
-        flex-wrap: wrap;
-    }
-
-    .tab-link {
-        padding: 10px 15px;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero h1 {
-        font-size: 1.8rem;
-    }
-
+    
     .btn-group {
-        display: flex;
         flex-direction: column;
+        align-items: center;
     }
-
+    
     .btn-outline {
         margin-left: 0;
         margin-top: 15px;
     }
 
-    .service-card {
-        height: auto;
-    }
-    .service-details {
-    margin-bottom: 20px;
-}
-
-.service-details h4 {
-    font-size: 1.1rem;
-    margin: 15px 0 10px;
-    color: var(--accent-color);
-}
-
-.service-details ul {
-    list-style-type: none;
-    margin-bottom: 15px;
-}
-
-.service-details ul li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 8px;
-    line-height: 1.4;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.service-details ul li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-    font-weight: bold;
-}
-
-.service-details ul li strong {
-    color: var(--text-color);
-    font-weight: 500;
-}
-
-/* Ajustes para las tarjetas de servicios */
-.service-content {
-    padding-bottom: 80px; /* Más espacio para el botón */
-}
-
-/* Responsive para las listas */
-@media (max-width: 768px) {
-    .service-details ul li {
-        font-size: 0.85rem;
-    }
-}
-    /* Estilos para las imágenes de servicios */
-.service-img {
-    height: 200px;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.3s ease;
-}
-
-.service-card:hover .service-img {
-    transform: scale(1.03);
-}
-
-/* Imágenes específicas para administración */
-.service-img[style*="admin-documentacion.jpg"] {
-    background-image: url('assets/images/admin-documentacion.jpg') !important;
-}
-
-.service-img[style*="admin-contabilidad.jpg"] {
-    background-image: url('assets/images/admin-contabilidad.jpg') !important;
-}
-
-.service-img[style*="admin-mantenimiento.jpg"] {
-    background-image: url('assets/images/admin-mantenimiento.jpg') !important;
-}
-
-.service-img[style*="admin-legal.jpg"] {
-    background-image: url('assets/images/admin-legal.jpg') !important;
-}
-
-/* Mejoras para el contenido de servicios */
-.service-content {
-    padding: 25px;
-    position: relative;
-    padding-bottom: 80px; /* Más espacio para el botón */
-    height: calc(100% - 200px);
-    display: flex;
-    flex-direction: column;
-}
-
-.service-details {
-    flex-grow: 1;
-    margin-bottom: 20px;
-}
-
-.service-details h4 {
-    font-size: 1.1rem;
-    margin: 15px 0 10px;
-    color: var(--accent-color);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 5px;
-}
-
-.service-details ul {
-    list-style-type: none;
-    margin-bottom: 15px;
-}
-
-.service-details ul li {
-    position: relative;
-    padding-left: 20px;
-    margin-bottom: 8px;
-    line-height: 1.4;
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-}
-
-.service-details ul li::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-    font-weight: bold;
-}
-
-.service-details ul li strong {
-    color: var(--text-color);
-    font-weight: 500;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .service-content {
-        padding-bottom: 90px;
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 15px;
     }
     
-    .service-details ul li {
-        font-size: 0.85rem;
-    }
-}
-    
-    .contact-info {
-        padding: 20px;
-    }
-}
-/* Añade esto al archivo CSS */
-
-/* Imágenes específicas para asesoría */
-.service-img[style*="asesoria-fiscal.jpg"] {
-    background-image: url('assets/images/asesoria-fiscal.jpg') !important;
-}
-
-.service-img[style*="asesoria-laboral.jpg"] {
-    background-image: url('assets/images/asesoria-laboral.jpg') !important;
-}
-
-.service-img[style*="asesoria-contable.jpg"] {
-    background-image: url('assets/images/asesoria-contable.jpg') !important;
-}
-
-.service-img[style*="asesoria-legal.jpg"] {
-    background-image: url('assets/images/asesoria-legal.jpg') !important;
-}
-
-/* Listas anidadas para mejor organización */
-.service-details .nested-list {
-    margin-left: 20px;
-    margin-top: 5px;
-}
-
-.service-details .nested-list li {
-    font-size: 0.85rem;
-    padding-left: 15px;
-}
-
-.service-details .nested-list li::before {
-    content: '-';
-    left: 0;
-}
-
-/* Efectos hover para mejor interactividad */
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-}
-
-.service-card {
-    transition: all 0.3s ease;
-}
-
-/* Responsive para listas complejas */
-@media (max-width: 768px) {
-    .service-details .nested-list li {
-        font-size: 0.8rem;
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
     }
     
-    .service-content {
-        padding: 20px;
-        padding-bottom: 80px;
+    .tab-nav {
+        flex-direction: column;
+        align-items: stretch;
     }
-}
-/* About Section Enhancements */
-.about-text h3 {
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    font-size: 1.8rem;
-}
-
-.about-highlights {
-    margin: 25px 0;
-}
-
-.highlight-item {
-    margin-bottom: 20px;
-}
-
-.highlight-item h4 {
-    color: var(--text-color);
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-    position: relative;
-    padding-left: 25px;
-}
-
-.highlight-item h4::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 15px;
-    height: 15px;
-    background-color: var(--accent-color);
-    border-radius: 3px;
-}
-
-.about-list {
-    list-style-type: none;
-    margin-top: 10px;
-}
-
-.about-list li {
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 8px;
-    color: var(--text-secondary);
-}
-
-.about-list li::before {
-    content: '▹';
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
-}
-
-@media (max-width: 768px) {
+    
+    .tab-link {
+        padding: 12px 20px;
+        text-align: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    .tab-link.active::after {
+        display: none;
+    }
+    
     .about-text h3 {
         font-size: 1.5rem;
     }
@@ -851,6 +687,79 @@ footer {
     }
     
     .about-list li {
+        font-size: 0.9rem;
+    }
+    
+    .service-details .nested-list li {
+        font-size: 0.8rem;
+    }
+    
+    .service-content {
+        padding: 20px;
+        padding-bottom: 80px;
+    }
+    
+    .contact-info {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+    
+    .hero p {
+        font-size: 0.95rem;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+    
+    .btn-large {
+        padding: 12px 30px;
+        font-size: 16px;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .contact-details strong {
+        width: 100px;
+    }
+    
+    .contact-map {
+        height: 300px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero h1 {
+        font-size: 1.6rem;
+    }
+    
+    .section-title {
+        font-size: 1.6rem;
+    }
+    
+    .contact-info {
+        padding: 20px;
+    }
+    
+    .contact-details strong {
+        width: 80px;
         font-size: 0.9rem;
     }
 }
