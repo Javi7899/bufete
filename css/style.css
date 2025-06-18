@@ -867,3 +867,8 @@ footer {
         grid-template-columns: 1fr;
     }
 }
+@media (max-width: 480px) {
+  .contact-float-buttons {
+    bottom: 70px; /* Evita interferir con menús móviles */
+  }
+}
